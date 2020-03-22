@@ -26,3 +26,9 @@ Each person then will implement the code necessary (be it C, C++, Python, Rust, 
 A very small sample Dockerfile is in `case1`, but obviously there's more to it.
 
 **May the force be with us**
+
+## Code snippets / Notes
+- Build image defined via `Dockerfile`, which is assumed to be in current directory: `sudo docker build -t <tagname>:<tagsuffix> .`
+- Create container instance with image: `sudo docker run -it <tagname>:<tagsuffix>`, i for interactive session, t for allocating tty.
+- Basic idea is to write some code that trigger the scenario, copy it into a container image (use commands in `Dockerfile`), build the image (`docker build`), then run it (`docker run`). Note that if no `EXEC` or `RUN` command is written in `Dockerfile`, by default a shell will be spawned when container is created and run (this is called an "entrypoint").
+
