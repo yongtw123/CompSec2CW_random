@@ -28,7 +28,25 @@ A very small sample Dockerfile is in `case1`, but obviously there's more to it.
 **May the force be with us**
 
 ## Code snippets / Notes
-- Build image defined via `Dockerfile`, which is assumed to be in current directory: `sudo docker build -t <tagname>:<tagsuffix> .`
-- Create container instance with image: `sudo docker run -it <tagname>:<tagsuffix>`, i for interactive session, t for allocating tty.
-- Basic idea is to write some code that trigger the scenario, copy it into a container image (use commands in `Dockerfile`), build the image (`docker build`), then run it (`docker run`). Note that if no `EXEC` or `RUN` command is written in `Dockerfile`, by default a shell will be spawned when container is created and run (this is called an "entrypoint").
+
+### Build image defined by Dockerfile
+
+Build image defined via `Dockerfile`, which is assumed to be in current directory: `sudo docker build -t <tagname>:<tagsuffix> .`
+
+### Run container
+Create container instance with image: `sudo docker run -it <tagname>:<tagsuffix>`, i for interactive session, t for allocating tty.
+
+- `--rm` to remove container on exit
+- `--cpuset-cpus 0` to pin container to one core (core 0)
+- `--cpus 0.1` to limit CPU usage of container to a tenth of a core
+- `--pids-limit 50` to limit number of PIDs container can use to 50
+
+### List containers
+`sudo docker ps -a`
+
+### Show container stats (CPU/MEM etc.)
+`sudo docker stats`
+
+### Basic testing process
+Basic idea is to write some code that trigger the scenario, copy it into a running container (`sudo docker cp <src> <containerid>:<dest>`), then run it (`docker run`). To automate the procedure, a Dockerfile should be created, which defines the base image (ex. `FROM ubuntu:bionic`), the files to copy (`COPY`), and the commands to run (`EXEC`/`RUN`). Note that if no `EXEC` or `RUN` command is written in `Dockerfile`, by default a shell will be spawned when container is created and run (this is called an "entrypoint").
 
