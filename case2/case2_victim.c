@@ -9,7 +9,7 @@
 int main(){
 	char* file_path = "case2_victim.txt";
 	int fd;
-	char buffer[100] = "Victim data synchronization test buffer.";
+	char buffer[BUFFER_SIZE] = "Victim data synchronization test buffer.";
 	fd = open(file_path, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IROTH);
 	if(fd == -1){
 		printf("open file error!\n");
@@ -19,7 +19,7 @@ int main(){
 	int ret_w;
 	printf("Start to Write File......\n");
 	printf("Writing in process, this may take few minutes...\n");
-	for(long long i=0;i<5000000;i++){
+	for(long long i=0;i<=1000000000;i++){
 		ret_w = write(fd,buffer,100);
 		if(ret_w == -1){
 			printf("Open File Error!\n");
