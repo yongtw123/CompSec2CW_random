@@ -15,7 +15,7 @@ attack is hard to implement, we mainly focus on the RFA attack towards the docke
 
 2. Switch to the root user.
 
-    $ su
+        $ su
 
 3. Change the shell scripts execution permission:
 
