@@ -1,10 +1,10 @@
-# Case 3
+# Case 5b
 Malicious container running the flexible I/O tester command (`fio`) to spawn a number of processes running sequential read or write actions in order to generate non-neglible workload on multiple kernel threads such as `kworker` and `kswapd`, thereby escaping the constraints imposed by cgroups and potentially impairing the performance of other containers.
 
 NOTE: You'd need at least 3GB of free disk space in order to replicate this attack.
 
 Steps to replicate: 
-1. `cd` into the case5 directory.
+1. `cd` into the case5/block_softirq directory.
 2. Build a Docker image from the supplied Dockerfile: `sudo docker build -t <tagname>:<tagsuffix> .`
 3. Open `top` or `htop` on host machine
 4. Start container and pin it on one core: 
