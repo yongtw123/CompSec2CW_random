@@ -1,0 +1,6 @@
+FROM ubuntu:bionic
+RUN apt-get update && apt-get install -y bc
+WORKDIR ~/CompSec2CW_random
+COPY ./case2_attacker* /tmp/
+WORKDIR /tmp
+CMD [ "./case2_attacker.sh" ]

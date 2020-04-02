@@ -12,7 +12,7 @@ We will designate IP\_a as external IP of VM hosting the container (Host A), and
 
 ## Steps
 1. On Host A, run `top` to monitor CPU usage and busy processes. Press `1` to see all cores.
-2. On Host A in another terminal, execute `net_modify_iptables.sh <num>`, where `<num>` is the number of bogus rules to insert into *iptables* (by default 5000). This may take a long time depending on number of rules.
+2. On Host A in another terminal, execute `net_modify_iptables.sh <num>`, where `<num>` is the number of bogus rules to insert into *iptables* (by default 5000). This may take a long time depending on number of rules. **Go to next step only when message 'Press any key...' appears.**
 3. On Host A in another terminal, run container: `sudo docker run --cpuset-cpus 0 -p <IP_a>:8080:8080/tcp --rm -it case5:net`, pinning it to core 0 and allow 100% utilization
 4. The container will be listening for connection at port 8080. Host A is listening for connection to IP\_a at port 8080.
 5. On Host B, start transfering 2GB of data at 20mbps to IP\_a port 8080: `dd if=/dev/zero bs=1M count=2000 | pv -L 20m | nc <IP\_a> 8080`

@@ -1,0 +1,5 @@
+FROM ubuntu:bionic
+WORKDIR ~/CompSec2CW_random
+COPY ./case2_victim* /tmp/
+WORKDIR /tmp
+CMD [ "./case2_victim.sh" ]
